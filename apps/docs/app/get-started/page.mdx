@@ -1,0 +1,66 @@
+# Get started
+
+Coal Series ships as a monorepo powered by Turborepo. The quickest way to explore is cloning the repository and installing dependencies.
+
+## 1. Install
+
+```bash
+npm install
+```
+
+## 2. Run the showcase app
+
+```bash
+npm run dev -- --filter=apps/showcase
+```
+
+This spins up the live dashboard using the React components and Tailwind preset.
+
+## 3. Run the docs site
+
+```bash
+npm run dev -- --filter=apps/docs
+```
+
+Visit http://localhost:3000 to browse the documentation with hot reload.
+
+## 4. Use the preset in your app
+
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+import coalPreset from "@coal-series/tailwind-preset";
+
+const config: Config = {
+  presets: [coalPreset],
+  content: ["./src/**/*.{ts,tsx,mdx}"],
+};
+
+export default config;
+```
+
+## 5. Import components
+
+```tsx
+import { Button, ExposureScoreCard } from "@coal-series/react";
+
+export function Summary() {
+  return (
+    <div className="space-y-6">
+      <ExposureScoreCard score={3.1} change={-0.4} benchmark={4.0} />
+      <Button accent="electric">Run remediation</Button>
+    </div>
+  );
+}
+```
+
+## 6. Contribution workflow
+
+1. Create a branch describing the change.
+2. Run `npm run lint` and `npm run typecheck`.
+3. Add tests within the relevant package (`npm run test -- --filter=@coal-series/react`).
+4. Submit a pull request; GitHub Actions will run builds and publish preview docs via Vercel.
+
+## Licensing
+
+Coal Series is released under the MIT license. See `LICENSE` in the repo root for terms.

@@ -1,0 +1,38 @@
+import { MetricCallout, Card, CardContent } from "@coal-series/react";
+
+# Coal Series
+
+Coal Series is the cybersecurity design language from **zentrybox**, crafted for network device management and vulnerability scanning workflows. It embraces IBM Carbon principles—clarity, hierarchy, and purposeful motion—while amplifying coal-black surfaces, electric accents, and mission-critical telemetry.
+
+<Card className="grid gap-6 md:grid-cols-3">
+  <CardContent className="col-span-3">
+    <p className="text-body text-coal-text-secondary">
+      Built for enterprise teams managing global infrastructure, Coal Series balances precision with speed. Each token, component, and pattern furthers situational awareness, letting analysts spot anomalies within seconds.
+    </p>
+  </CardContent>
+  <MetricCallout label="Managed devices" value="482" trend="+36 new this week" accent="safe" />
+  <MetricCallout label="Open vulnerabilities" value="218" trend="12 critical" accent="critical" />
+  <MetricCallout label="Average exposure score" value="3.4" trend="-0.8 vs last week" accent="safe" />
+</Card>
+
+## Principles
+
+1. **Signal-first.** Visual hierarchy routes attention to risk signals without overwhelming analysts.
+2. **Command center clarity.** Every surface feels like an operations console—dense, legible, and calm.
+3. **Human + machine collaboration.** Components scale from manual triage to autonomous playbooks.
+4. **Accessible by default.** Contrast, focus, and motion are tuned for low-vision and keyboard users.
+
+## Architecture
+
+Coal Series ships as a monorepo with shared tokens, React primitives, and two Next.js experiences:
+
+- `packages/tailwind-preset`: Tailwind theme tokens, utilities, and motion primitives.
+- `packages/react-components`: Typed React components, from buttons to the vulnerability radar widget.
+- `apps/docs`: This documentation hub built with MDX.
+- `apps/showcase`: A live dashboard demonstrating end-to-end usage.
+
+## Roadmap
+
+- Charts: Intrusion timelines and compliance widgets.
+- Patterns: Guided threat hunt and remediation pipelines.
+- Localization: RTL support and region-aware formatting.

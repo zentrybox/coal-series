@@ -1,0 +1,34 @@
+# Patterns
+
+Coal Series patterns combine tokens and components into end-to-end workflows tailored to vulnerability management.
+
+## Command center dashboard
+
+1. **Global posture banner:** Use `MetricCallout` within a `Card` row to communicate KPIs.
+2. **Vulnerability radar:** Pair `<VulnerabilityRadar>` with `<BlastRadiusHeatmap>` to show impact and spread.
+3. **Device inventory table:** `DataTable` with severity chips and row hover states for quick triage.
+4. **Activity log:** Render time-stamped events using Plex Mono and subtle borders.
+
+## Scan automation wizard
+
+1. **Tabs** differentiate scheduled vs ad-hoc scans.
+2. **Modal** summarises scope, credentials, and expected duration before confirmation.
+3. **Exposure score card** appears in the success screen, highlighting delta vs benchmark.
+
+## Alert escalation
+
+1. **Toast / Banner (coming soon):** Use status colors to escalate severity.
+2. **Modal** or **Drawer** summarises detection details with call-to-action buttons.
+3. **Data table** lists affected assets; allow bulk actions.
+
+## Motion guidelines
+
+- Use `coal-scan` animation to indicate live sweeps.
+- Trigger `coal-radar` when the radar widget receives new telemetry.
+- Honor `prefers-reduced-motion`; switch to static glows when disabled.
+
+## Content strategy
+
+- Labels use plain language: "Quarantine device" instead of "Execute rule".
+- Avoid acronyms without tooltips.
+- Provide log context via Plex Mono snippets for reproducibility.

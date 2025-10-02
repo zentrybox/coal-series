@@ -1,0 +1,111 @@
+import { useState } from "react";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  DataTable,
+  Modal,
+  BlastRadiusHeatmap,
+  ExposureScoreCard,
+  Tabs,
+  TabTrigger,
+  TabPanel,
+  VulnerabilityRadar,
+} from "@coal-series/react";
+
+function TabsExample() {
+  const [tab, setTab] = useState("overview");
+  return (
+    <Tabs value={tab} onValueChange={setTab}>
+      <TabTrigger value="overview">Overview</TabTrigger>
+      <TabTrigger value="activity">Activity</TabTrigger>
+      <TabTrigger value="audit">Audit</TabTrigger>
+    </Tabs>
+  );
+}
+
+# Components
+
+Coal Series React primitives combine Tailwind utility styling with accessible state management. Each component ships with sensible defaults and works seamlessly with the Tailwind preset.
+
+## Button
+
+<Button variant="primary">Launch scan</Button>
+<Button variant="secondary" className="ml-3">Export report</Button>
+<Button variant="danger" className="ml-3">Quarantine host</Button>
+
+## Card
+
+<Card className="mt-6">
+  <CardHeader>
+    <CardTitle>Device integrity</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p className="text-body text-coal-text-secondary">
+      Cards frame telemetry panes, summary KPI stacks, and configuration sections. They expose header, content, and footer slots for maximum flexibility.
+    </p>
+  </CardContent>
+</Card>
+
+## Tabs
+
+<TabsExample />
+
+## Data table
+
+<DataTable
+  columns={[
+    { key: "asset", header: "Asset" },
+    { key: "severity", header: "Severity" },
+    { key: "status", header: "Status" },
+  ]}
+  data={[
+    { asset: "Gateway-nyc-core", severity: "Critical", status: "Unpatched" },
+    { asset: "Switch-lon-32", severity: "High", status: "Patching" },
+  ]}
+/>
+
+## Modal
+
+<Modal
+  open
+  heading="Confirm quarantine"
+  description="Isolate the host to block east-west movement."
+  footer={
+    <div className="flex gap-3">
+      <Button variant="ghost">Cancel</Button>
+      <Button variant="danger">Quarantine</Button>
+    </div>
+  }
+>
+  <p className="text-body text-coal-text-secondary">
+    Quarantining moves the asset to a restricted VLAN and revokes privileged credentials. Automations resume once remediation is verified.
+  </p>
+</Modal>
+
+## Domain widgets
+
+<ExposureScoreCard score={3.4} change={-0.8} benchmark={4.1} />
+
+<VulnerabilityRadar
+  points={[
+    { id: "a", severity: "critical", radiusPercent: 65, angleDegrees: 20 },
+    { id: "b", severity: "warning", radiusPercent: 45, angleDegrees: 120 },
+    { id: "c", severity: "info", radiusPercent: 30, angleDegrees: 240 },
+  ]}
+  sweepLabel="Sweep"
+  sweepProgress={0.42}
+/>
+
+<BlastRadiusHeatmap
+  matrix={[
+    [0.12, 0.35, 0.45, 0.28, 0.1, 0.05],
+    [0.22, 0.38, 0.51, 0.32, 0.14, 0.08],
+    [0.16, 0.29, 0.42, 0.37, 0.21, 0.11],
+    [0.08, 0.19, 0.33, 0.4, 0.36, 0.18],
+    [0.05, 0.13, 0.21, 0.3, 0.28, 0.2],
+    [0.02, 0.07, 0.14, 0.2, 0.18, 0.12],
+  ]}
+/>

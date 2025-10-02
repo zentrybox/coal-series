@@ -1,0 +1,22 @@
+{
+  "name": "@coal-series/tailwind-preset",
+  "version": "0.1.0",
+  "description": "Tailwind preset and design tokens for the Coal Series design system",
+  "keywords": ["tailwindcss", "design-system", "coal-series"],
+  "author": "zentrybox",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.4.0 <4"
+  }
+}

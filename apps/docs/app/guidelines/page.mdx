@@ -1,0 +1,41 @@
+# Guidelines
+
+Coal Series guidelines provide the guardrails for building cohesive cybersecurity experiences.
+
+## Color system
+
+- **Coal foundation:** `#0B0D10` background, `#11141A` surface alt, and graphite borders anchor high-contrast interfaces.
+- **Accent:** Choose a single accent—Electric Blue (`#38A0FF`), Cyber Purple (`#7E4DFF`), or Emerald Green (`#2AD0A8`).
+- **Status palette:**
+  - Critical `#FF3B4E`
+  - Warning `#FF9F2D`
+  - Safe `#36D27E`
+  - Info `#4DC0FF`
+- **Usage:** Keep accent saturation under 30% of the viewport; rely on grayscale layering for depth.
+
+## Typography
+
+Coal Series standardizes IBM Plex for both UI and telemetry.
+
+- Headings use Plex Sans with optical tracking.
+- Tabular data and logs use Plex Mono.
+- Font sizes follow a `1.125` ratio: display (`56px`), h1 (`36px`), h2 (`28px`), h3 (`22px`), body (`16px`), small (`14px`).
+
+## Spacing & layout
+
+- Base unit `8px` scales to `12 / 16 / 20 / 24 / 32 / 40 / 48 / 64 / 80`.
+- Grids: 12 columns on desktop (`80px` gutters), 8 columns tablet, single column mobile.
+- Cards use `24px` vertical padding on desktop, compressing gracefully on smaller breakpoints.
+
+## Motion
+
+- **Scan pulse:** `coal-scan` keyframe loops every 3s.
+- **Radar sweep:** `coal-radar` keyframe rotates full circle every 8s.
+- **Duration:** Keep UI transitions between `120–240ms`; avoid easing that feels playful.
+- Motion must communicate system state changes (scan started, node quarantined) rather than decorative flair.
+
+## Accessibility
+
+- Minimum contrast ratio 4.5:1 across all states.
+- Support keyboard focus by default—Coal Series buttons expose focus-visible rings.
+- Offer reduced motion preference fallback by disabling looping animations when `prefers-reduced-motion` is set.

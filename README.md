@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coal Series Design System
 
-## Getting Started
+Coal Series is a cybersecurity-focused design system that pairs a Tailwind CSS preset with a React component kit, documentation site, and interactive showcase. The monorepo is powered by Turborepo and keeps code, tokens, demos, and docs in one place.
 
-First, run the development server:
+![Coal Series panel preview](./public/panel.png)
+
+## Repository layout
+
+- `apps/docs` — MDX-powered documentation site describing foundations, components, and patterns.
+- `apps/showcase` — Interactive product-style dashboard that demonstrates the system in context.
+- `packages/tailwind-preset` — Coal-themed Tailwind preset with typography, color tokens, and utility plugins.
+- `packages/react-components` — Headless + styled React primitives and domain widgets built with the preset.
+
+## Quick start
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the documentation site (http://localhost:3000 by default):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev -- --filter=apps/docs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the interactive showcase dashboard:
 
-## Learn More
+```bash
+npm run dev -- --filter=apps/showcase
+```
 
-To learn more about Next.js, take a look at the following resources:
+Build all workspace packages:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Using Coal Series in your app
 
-## Deploy on Vercel
+Apply the Tailwind preset:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+import coalPreset from "@coal-series/tailwind-preset";
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+const config: Config = {
+	presets: [coalPreset],
+	content: ["./src/**/*.{ts,tsx,mdx}"],
+};
+
+export default config;
+```
+
+Compose interfaces with the component kit:
+
+```tsx
+import { Button, ExposureScoreCard } from "@coal-series/react";
+
+export function SecuritySummary() {
+	return (
+		<section className="space-y-6">
+			<ExposureScoreCard score={3.1} benchmark={4} change={-0.4} />
+			<Button accent="electric">Run remediation</Button>
+		</section>
+	);
+}
+```
+
+## Scripts
+
+- `npm run lint` — Lint the entire workspace with the shared ESLint config.
+- `npm run typecheck` — Project references type-check for packages and apps.
+- `npm run test` — Run component and utility tests (Vitest).
+- `npm run dev -- --filter=<target>` — Start an app in dev mode (`apps/docs`, `apps/showcase`).
+
+## Contributing
+
+1. Create a feature branch.
+2. Run lint, typecheck, and targeted tests before committing.
+3. Open a pull request; CI will verify builds and preview the docs.
+
+See `CONTRIBUTING.md` for the full workflow and coding standards (coming soon).
+
+## License
+
+Coal Series is released under the MIT license. See `LICENSE` for details.

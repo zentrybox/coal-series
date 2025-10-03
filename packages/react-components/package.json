@@ -30,7 +30,7 @@
     "react-dom": ">=18 <20"
   },
   "dependencies": {
-    "@coal-series/tailwind-preset": "workspace:*",
+  "@coal-series/tailwind-preset": "file:../tailwind-preset",
     "@radix-ui/react-slot": "^1.0.2",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.2"

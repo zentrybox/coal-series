@@ -1,13 +1,5 @@
 import type { ComponentProps } from "react";
 import type { MDXComponents } from "mdx/types";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  MetricCallout,
-} from "@coal-series/react";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -22,7 +14,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     code: (props: ComponentProps<"code">) => <code className="text-mono-sm" {...props} />,
     pre: (props: ComponentProps<"pre">) => (
       <pre
-        className="mt-4 overflow-x-auto rounded-base border border-coal-border bg-coal-bg-alt p-5 text-mono text-coal-text-secondary"
+        className="mt-4 overflow-x-auto rounded-base border border-coal-border bg-coal-bg-alt p-5 font-mono text-coal-text-secondary"
         {...props}
       />
     ),
@@ -36,12 +28,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         />
       </div>
     ),
-    Button,
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-    MetricCallout,
     ...components,
   };
 }

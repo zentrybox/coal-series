@@ -10,18 +10,20 @@ html {
   color-scheme: dark;
 }
 
-body {
-  @apply bg-coal-bg text-coal-text-primary antialiased;
-}
+@layer base {
+  body {
+    @apply bg-coal-bg text-coal-text-primary antialiased;
+  }
 
-main {
-  @apply mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-8 pb-24 pt-16;
-}
+  main {
+    @apply mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-8 pb-24 pt-16;
+  }
 
-a {
-  @apply text-coal-accent-electric transition-colors hover:brightness-110;
-}
+  a {
+    @apply text-coal-accent-electric transition-colors hover:brightness-110;
+  }
 
-code {
-  @apply rounded-base bg-coal-bg-alt px-2 py-1 font-mono text-mono-sm text-coal-text-secondary;
+  code {
+    @apply rounded-base bg-coal-bg-alt px-2 py-1 font-mono text-mono-sm text-coal-text-secondary;
+  }
 }

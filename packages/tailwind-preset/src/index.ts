@@ -30,7 +30,9 @@ export const coalColors = {
   },
 } as const;
 
-export const coalFontFamily = {
+type FontSizeTuple = [string, Record<string, string>];
+
+export const coalFontFamily: Record<string, string[]> = {
   sans: [
     "var(--font-plex-sans)",
     "IBM Plex Sans",
@@ -52,9 +54,9 @@ export const coalFontFamily = {
     "Arial",
     "sans-serif",
   ],
-} as const;
+};
 
-export const coalFontSize = {
+export const coalFontSize: Record<string, FontSizeTuple> = {
   display: ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.01em" }],
   h1: ["2.25rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
   h2: ["1.75rem", { lineHeight: "1.25" }],
@@ -67,7 +69,7 @@ export const coalFontSize = {
     "0.8125rem",
     { lineHeight: "1.4", fontFamily: coalFontFamily.mono.join(",") },
   ],
-} as const;
+};
 
 export const coalSpacing = {
   3: "0.75rem",
@@ -152,7 +154,7 @@ export const coalPreset = {
           borderRadius: theme("borderRadius.pill"),
           padding: "0.25rem 0.75rem",
           fontSize: theme("fontSize['body-sm'][0]"),
-          fontWeight: 600,
+          fontWeight: "600",
         },
         ".coal-nav-item": {
           position: "relative",
@@ -162,7 +164,7 @@ export const coalPreset = {
           borderRadius: theme("borderRadius.base"),
           padding: "0.75rem 1rem",
           fontSize: theme("fontSize['body-sm'][0]"),
-          fontWeight: 600,
+          fontWeight: "600",
           color: theme("colors.coal.text.secondary"),
           transitionProperty: "color, background-color",
           transitionDuration: "200ms",
@@ -223,6 +225,6 @@ export const coalPreset = {
       });
     }),
   ],
-} satisfies Config;
+} satisfies Partial<Config>;
 
 export default coalPreset;

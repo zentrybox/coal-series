@@ -10,8 +10,6 @@
     "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@coal-series/react": "workspace:*",
-    "@coal-series/tailwind-preset": "workspace:*",
     "@next/mdx": "^15.2.0",
     "next": "15.5.4",
     "react": "19.1.0",

@@ -14,15 +14,23 @@
 /coverage
 
 # next.js
-/.next/
+.next/
+apps/**/.next/
+apps/**/out/
 /out/
 
-# production
+# production & build outputs
 /build
+**/dist/
 
 # misc
 .DS_Store
 *.pem
+.turbo/
+apps/**/.turbo/
+packages/**/.turbo/
+turbo.log
+turbo.json.local
 
 # debug
 npm-debug.log*

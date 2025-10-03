@@ -1,111 +1,197 @@
-import { useState } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  DataTable,
-  Modal,
-  BlastRadiusHeatmap,
-  ExposureScoreCard,
-  Tabs,
-  TabTrigger,
-  TabPanel,
-  VulnerabilityRadar,
-} from "@coal-series/react";
-
-function TabsExample() {
-  const [tab, setTab] = useState("overview");
-  return (
-    <Tabs value={tab} onValueChange={setTab}>
-      <TabTrigger value="overview">Overview</TabTrigger>
-      <TabTrigger value="activity">Activity</TabTrigger>
-      <TabTrigger value="audit">Audit</TabTrigger>
-    </Tabs>
-  );
-}
-
 # Components
 
-Coal Series React primitives combine Tailwind utility styling with accessible state management. Each component ships with sensible defaults and works seamlessly with the Tailwind preset.
+Coal Series arranges a compact set of primitives—buttons, cards, data grids, dialogs, and telemetry widgets. Each example below is composed with Tailwind classes layered on top of the Coal token set so you can copy the snippet straight into any Next.js page.
 
-## Button
+## Buttons
 
-<Button variant="primary">Launch scan</Button>
-<Button variant="secondary" className="ml-3">Export report</Button>
-<Button variant="danger" className="ml-3">Quarantine host</Button>
+<div className="flex flex-wrap gap-3">
+  <button className="inline-flex items-center justify-center gap-2 rounded-base bg-coal-accent-electric px-5 py-2.5 text-body font-semibold text-coal-text-inverse shadow-[0_12px_32px_-18px_rgba(56,160,255,0.65)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coal-accent-electric/40 focus-visible:ring-offset-2">
+    Launch scan
+  </button>
+  <button className="inline-flex items-center justify-center gap-2 rounded-base border border-coal-border bg-coal-surface px-5 py-2.5 text-body font-semibold text-coal-text-secondary transition hover:bg-coal-surface-alt hover:text-coal-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coal-accent-electric/30 focus-visible:ring-offset-2">
+    Export report
+  </button>
+  <button className="inline-flex items-center justify-center gap-2 rounded-base bg-status-critical px-5 py-2.5 text-body font-semibold text-coal-text-inverse transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-status-critical/40 focus-visible:ring-offset-2">
+    Quarantine host
+  </button>
+</div>
 
 ## Card
 
-<Card className="mt-6">
-  <CardHeader>
-    <CardTitle>Device integrity</CardTitle>
-  </CardHeader>
-  <CardContent>
-    <p className="text-body text-coal-text-secondary">
-      Cards frame telemetry panes, summary KPI stacks, and configuration sections. They expose header, content, and footer slots for maximum flexibility.
-    </p>
-  </CardContent>
-</Card>
+<div className="mt-6 rounded-base border border-coal-border bg-coal-surface shadow-coal-md">
+  <header className="flex items-start justify-between gap-4 border-b border-coal-border px-6 py-4">
+    <div>
+      <h3 className="text-h3 font-semibold text-coal-text-primary">Device integrity</h3>
+      <p className="text-body-sm text-coal-text-muted">Last scan completed 12 minutes ago</p>
+    </div>
+    <span className="rounded-pill bg-status-info/20 px-3 py-1 text-body-sm font-medium text-status-info">
+      Healthy
+    </span>
+  </header>
+  <div className="px-6 py-5 text-body text-coal-text-secondary">
+    Cards frame telemetry panes, summary KPI stacks, and configuration sections. They expose header, content, and footer slots for maximum flexibility.
+  </div>
+  <footer className="flex items-center justify-end gap-3 border-t border-coal-border px-6 py-4">
+    <button className="text-body-sm font-semibold text-coal-text-secondary hover:text-coal-text-primary">
+      View logs
+    </button>
+    <button className="inline-flex items-center justify-center gap-2 rounded-base bg-coal-accent-electric px-4 py-2 text-body-sm font-semibold text-coal-text-inverse">
+      Run remediation
+    </button>
+  </footer>
+</div>
 
 ## Tabs
 
-<TabsExample />
+<div className="mt-8 rounded-base border border-coal-border bg-coal-bg-alt p-1">
+  <div className="grid gap-2 sm:grid-cols-3">
+    <button className="rounded-base bg-coal-surface px-4 py-2 text-body-sm font-semibold text-coal-text-primary shadow-[inset_0_0_0_1px_rgba(56,160,255,0.45)]">
+      Overview
+    </button>
+    <button className="rounded-base px-4 py-2 text-body-sm font-semibold text-coal-text-muted transition hover:text-coal-text-primary">
+      Activity
+    </button>
+    <button className="rounded-base px-4 py-2 text-body-sm font-semibold text-coal-text-muted transition hover:text-coal-text-primary">
+      Audit
+    </button>
+  </div>
+  <div className="mt-4 rounded-base border border-coal-border bg-coal-surface p-6 text-body text-coal-text-secondary">
+    Tabs switch between live asset activity, remediation plans, and audit trails without losing context.
+  </div>
+</div>
 
 ## Data table
 
-<DataTable
-  columns={[
-    { key: "asset", header: "Asset" },
-    { key: "severity", header: "Severity" },
-    { key: "status", header: "Status" },
-  ]}
-  data={[
-    { asset: "Gateway-nyc-core", severity: "Critical", status: "Unpatched" },
-    { asset: "Switch-lon-32", severity: "High", status: "Patching" },
-  ]}
-/>
+<div className="mt-8 overflow-x-auto rounded-base border border-coal-border bg-coal-surface">
+  <table className="min-w-full border-separate text-left text-body text-coal-text-primary" cellPadding="0" cellSpacing="0">
+    <thead>
+      <tr className="border-b border-coal-border text-body-sm uppercase tracking-[0.2em] text-coal-text-muted">
+        <th className="px-6 py-3 font-semibold">Asset</th>
+        <th className="px-6 py-3 font-semibold">Severity</th>
+        <th className="px-6 py-3 font-semibold text-right">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-b border-coal-border/60 transition hover:bg-white/5">
+        <td className="px-6 py-4">Gateway-nyc-core</td>
+        <td className="px-6 py-4">
+          <span className="coal-status-chip bg-status-critical/20 text-status-critical">Critical</span>
+        </td>
+        <td className="px-6 py-4 text-right text-coal-text-secondary">Unpatched</td>
+      </tr>
+      <tr className="transition hover:bg-white/5">
+        <td className="px-6 py-4">Switch-lon-32</td>
+        <td className="px-6 py-4">
+          <span className="coal-status-chip bg-status-warning/20 text-status-warning">High</span>
+        </td>
+        <td className="px-6 py-4 text-right text-coal-text-secondary">Patching</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-## Modal
+## Dialog
 
-<Modal
-  open
-  heading="Confirm quarantine"
-  description="Isolate the host to block east-west movement."
-  footer={
-    <div className="flex gap-3">
-      <Button variant="ghost">Cancel</Button>
-      <Button variant="danger">Quarantine</Button>
+<div className="relative isolate mt-8 overflow-hidden rounded-base border border-coal-border bg-black/70 p-0 shadow-coal-elevated">
+  <div className="bg-coal-surface px-6 py-5">
+    <h2 className="text-h2 font-semibold text-coal-text-primary">Confirm quarantine</h2>
+    <p className="mt-2 text-body text-coal-text-secondary">
+      Isolate the host to block east-west movement. Automations resume once remediation is verified.
+    </p>
+    <div className="mt-6 flex justify-end gap-3">
+      <button className="text-body-sm font-semibold text-coal-text-secondary hover:text-coal-text-primary">
+        Cancel
+      </button>
+      <button className="inline-flex items-center justify-center gap-2 rounded-base bg-status-critical px-4 py-2 text-body-sm font-semibold text-coal-text-inverse hover:brightness-110">
+        Quarantine
+      </button>
     </div>
-  }
->
-  <p className="text-body text-coal-text-secondary">
-    Quarantining moves the asset to a restricted VLAN and revokes privileged credentials. Automations resume once remediation is verified.
-  </p>
-</Modal>
+  </div>
+</div>
 
-## Domain widgets
+## Telemetry widgets
 
-<ExposureScoreCard score={3.4} change={-0.8} benchmark={4.1} />
+<div className="mt-8 grid gap-6 lg:grid-cols-2">
+  <div className="coal-card px-6 py-5">
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-body-sm uppercase tracking-[0.3em] text-coal-text-muted">Exposure score</p>
+        <p className="mt-3 text-display font-semibold text-coal-text-primary">3.4</p>
+      </div>
+      <div className="relative h-20 w-20">
+        <svg viewBox="0 0 36 36" className="h-full w-full">
+          <path
+            fill="none"
+            strokeWidth="3"
+            d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32"
+            strokeLinecap="round"
+            strokeDasharray="100"
+            strokeDashoffset="0"
+            stroke="rgba(31,36,46,0.6)"
+          />
+          <path
+            fill="none"
+            strokeWidth="3.5"
+            d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32"
+            strokeLinecap="round"
+            strokeDasharray="100"
+            strokeDashoffset="66"
+            stroke="#38A0FF"
+          />
+        </svg>
+        <span className="absolute inset-0 grid place-items-center text-body-sm font-semibold text-coal-text-primary">
+          34%
+        </span>
+      </div>
+    </div>
+    <p className="mt-4 text-body-sm text-coal-text-muted">-0.8 vs last week · Benchmark 4.1</p>
+  </div>
 
-<VulnerabilityRadar
-  points={[
-    { id: "a", severity: "critical", radiusPercent: 65, angleDegrees: 20 },
-    { id: "b", severity: "warning", radiusPercent: 45, angleDegrees: 120 },
-    { id: "c", severity: "info", radiusPercent: 30, angleDegrees: 240 },
-  ]}
-  sweepLabel="Sweep"
-  sweepProgress={0.42}
-/>
+  <div className="coal-card p-6">
+    <div className="flex items-center justify-between text-body-sm text-coal-text-muted">
+      <div>
+        <h3 className="text-h3 font-semibold text-coal-text-primary">Threat radar</h3>
+        <p>Live sweep over critical assets.</p>
+      </div>
+      <span className="font-semibold text-status-info">Sweep · 42%</span>
+    </div>
+    <div className="mt-6 flex flex-col items-center gap-6">
+      <div className="coal-radar-sweep coal-gridlines relative aspect-square w-full max-w-[260px] rounded-full border border-coal-border bg-coal-bg-alt">
+        <span className="absolute left-[70%] top-[35%] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-status-critical shadow-[0_0_16px_rgba(56,160,255,0.35)]" />
+        <span className="absolute left-[48%] top-[62%] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-status-warning shadow-[0_0_16px_rgba(56,160,255,0.35)]" />
+        <span className="absolute left-[30%] top-[45%] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-status-info shadow-[0_0_16px_rgba(56,160,255,0.35)]" />
+      </div>
+      <dl className="grid w-full grid-cols-2 gap-3 text-body-sm text-coal-text-muted">
+        <div className="rounded-base border border-coal-border px-3 py-2">
+          <dt className="font-semibold text-coal-text-secondary">Critical</dt>
+          <dd>3 surfaced this hour</dd>
+        </div>
+        <div className="rounded-base border border-coal-border px-3 py-2">
+          <dt className="font-semibold text-coal-text-secondary">Watchlist</dt>
+          <dd>5 nodes monitored</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 
-<BlastRadiusHeatmap
-  matrix={[
-    [0.12, 0.35, 0.45, 0.28, 0.1, 0.05],
-    [0.22, 0.38, 0.51, 0.32, 0.14, 0.08],
-    [0.16, 0.29, 0.42, 0.37, 0.21, 0.11],
-    [0.08, 0.19, 0.33, 0.4, 0.36, 0.18],
-    [0.05, 0.13, 0.21, 0.3, 0.28, 0.2],
-    [0.02, 0.07, 0.14, 0.2, 0.18, 0.12],
-  ]}
-/>
+  <div className="coal-card p-6 lg:col-span-2">
+    <h3 className="text-h3 font-semibold text-coal-text-primary">Blast radius heatmap</h3>
+    <div className="mt-5 grid grid-cols-6 gap-2">
+      <span className="aspect-square rounded-base bg-status-critical/25" />
+      <span className="aspect-square rounded-base bg-status-critical/20" />
+      <span className="aspect-square rounded-base bg-status-warning/25" />
+      <span className="aspect-square rounded-base bg-status-warning/20" />
+      <span className="aspect-square rounded-base bg-status-info/25" />
+      <span className="aspect-square rounded-base bg-status-info/20" />
+      <span className="aspect-square rounded-base bg-status-safe/30" />
+      <span className="aspect-square rounded-base bg-status-safe/20" />
+      <span className="aspect-square rounded-base bg-status-warning/25" />
+      <span className="aspect-square rounded-base bg-status-critical/25" />
+      <span className="aspect-square rounded-base bg-status-info/25" />
+      <span className="aspect-square rounded-base bg-status-safe/20" />
+    </div>
+    <p className="mt-4 text-body-sm text-coal-text-muted">
+      Cells convey lateral movement risk between network segments. Hot zones trigger automated remediations.
+    </p>
+  </div>
+</div>

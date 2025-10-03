@@ -5,7 +5,6 @@ const withMDX = createMDX({
 });
 
 const nextConfig = {
-  transpilePackages: ["@coal-series/react", "@coal-series/tailwind-preset"],
   pageExtensions: ["ts", "tsx", "mdx"],
   experimental: {
     mdxRs: true,

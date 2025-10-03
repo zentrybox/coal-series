@@ -1,19 +1,29 @@
-import { MetricCallout, Card, CardContent } from "@coal-series/react";
-
 # Coal Series
 
 Coal Series is the cybersecurity design language from **zentrybox**, crafted for network device management and vulnerability scanning workflows. It embraces IBM Carbon principles—clarity, hierarchy, and purposeful motion—while amplifying coal-black surfaces, electric accents, and mission-critical telemetry.
 
-<Card className="grid gap-6 md:grid-cols-3">
-  <CardContent className="col-span-3">
+<div className="grid gap-6 rounded-base border border-coal-border bg-coal-surface shadow-coal-md md:grid-cols-3">
+  <div className="col-span-3 px-6 py-5">
     <p className="text-body text-coal-text-secondary">
       Built for enterprise teams managing global infrastructure, Coal Series balances precision with speed. Each token, component, and pattern furthers situational awareness, letting analysts spot anomalies within seconds.
     </p>
-  </CardContent>
-  <MetricCallout label="Managed devices" value="482" trend="+36 new this week" accent="safe" />
-  <MetricCallout label="Open vulnerabilities" value="218" trend="12 critical" accent="critical" />
-  <MetricCallout label="Average exposure score" value="3.4" trend="-0.8 vs last week" accent="safe" />
-</Card>
+  </div>
+  <div className="flex flex-col gap-2 px-6 pb-6">
+    <span className="text-body-sm uppercase tracking-[0.3em] text-coal-text-muted">Managed devices</span>
+    <span className="text-display font-semibold text-coal-text-primary">482</span>
+    <span className="text-body-sm font-medium text-status-safe">+36 new this week</span>
+  </div>
+  <div className="flex flex-col gap-2 px-6 pb-6">
+    <span className="text-body-sm uppercase tracking-[0.3em] text-coal-text-muted">Open vulnerabilities</span>
+    <span className="text-display font-semibold text-coal-text-primary">218</span>
+    <span className="text-body-sm font-medium text-status-critical">12 critical</span>
+  </div>
+  <div className="flex flex-col gap-2 px-6 pb-6">
+    <span className="text-body-sm uppercase tracking-[0.3em] text-coal-text-muted">Average exposure score</span>
+    <span className="text-display font-semibold text-coal-text-primary">3.4</span>
+    <span className="text-body-sm font-medium text-status-safe">-0.8 vs last week</span>
+  </div>
+</div>
 
 ## Principles
 

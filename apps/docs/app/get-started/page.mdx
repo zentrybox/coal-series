@@ -24,32 +24,52 @@ npm run dev -- --filter=apps/docs
 
 Visit http://localhost:3000 to browse the documentation with hot reload.
 
-## 4. Use the preset in your app
+## 4. Copy the tokens
+
+Bring Coal Series tokens into any Tailwind project by extending your theme:
 
 ```ts
 // tailwind.config.ts
 import type { Config } from "tailwindcss";
-import coalPreset from "@coal-series/tailwind-preset";
 
-const config: Config = {
-  presets: [coalPreset],
+export default {
+  darkMode: "class",
   content: ["./src/**/*.{ts,tsx,mdx}"],
-};
-
-export default config;
+  theme: {
+    extend: {
+      colors: {
+        coal: {
+          bg: "#0B0D10",
+          "bg-alt": "#11141A",
+          surface: "#161B24",
+          border: "#1F242E",
+          text: {
+            primary: "#F8FAFC",
+            secondary: "#C2C7D3",
+            muted: "#8893A8",
+          },
+          accent: {
+            electric: "#38A0FF",
+            purple: "#7E4DFF",
+            emerald: "#2AD0A8",
+          },
+        },
+      },
+    },
+  },
+} satisfies Config;
 ```
 
-## 5. Import components
+## 5. Compose interfaces
+
+Coal Series surfaces are built by layering tokens. For example, the primary action button:
 
 ```tsx
-import { Button, ExposureScoreCard } from "@coal-series/react";
-
-export function Summary() {
+export function PrimaryAction() {
   return (
-    <div className="space-y-6">
-      <ExposureScoreCard score={3.1} change={-0.4} benchmark={4.0} />
-      <Button accent="electric">Run remediation</Button>
-    </div>
+    <button className="inline-flex items-center justify-center gap-2 rounded-base bg-coal-accent-electric px-5 py-2.5 text-body font-semibold text-coal-text-inverse shadow-[0_12px_32px_-18px_rgba(56,160,255,0.65)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coal-accent-electric/40 focus-visible:ring-offset-2">
+      Launch scan
+    </button>
   );
 }
 ```
@@ -58,7 +78,7 @@ export function Summary() {
 
 1. Create a branch describing the change.
 2. Run `npm run lint` and `npm run typecheck`.
-3. Add tests within the relevant package (`npm run test -- --filter=@coal-series/react`).
+3. Add tests for any new utilities or docs examples (`npm run test`).
 4. Submit a pull request; GitHub Actions will run builds and publish preview docs via Vercel.
 
 ## Licensing
